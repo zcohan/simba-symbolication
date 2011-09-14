@@ -5,3 +5,8 @@ All the script is doing is automating the process described here: http://www.red
 This version of the script is targeted specifically at Mac app crash logs. Usage is very similar to 'symbolicatecrash'.
 
 symbolicatecrash-mac crashlog.crash path-to-dSYM
+
+
+
+Status:
+I hacked this together one night after getting annoyed at the lack of automatic symbolication for Mac crash logs. It's pretty crude and could do with improvements. I've completely stripped out the "spotlight searching" functionality present in the iOS version of the script.
