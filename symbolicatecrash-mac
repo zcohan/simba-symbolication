@@ -100,12 +100,12 @@ exit 1;
 
 #########
 
-sub matchesUUID {  
-    my ($path, $uuid, $arch) = @_;
+sub UUIDFromImage {
+    my ($path, $arch) = @_;
     
     if ( ! -f $path ) {
         print STDERR "## $path doesn't exist " if $opt{v};
-        return 0;
+        return undef;
     }
     
     my $cmd = "lipo -info '$path'";
@@ -114,7 +114,7 @@ sub matchesUUID {
     my $lipo_result = `$cmd`;
     if( index($lipo_result, $arch) < 0) {
         print STDERR "## $path doesn't contain $arch slice\n" if $opt{v};
-        return 0;
+        return undef;
     }
     
     $cmd = "dwarfdump --uuid --arch $arch '$path'";
@@ -124,16 +124,23 @@ sub matchesUUID {
     my $TEST_uuid = `$cmd`;
     
     if ( $TEST_uuid =~ /UUID:\s*([0-9A-Fa-f-]+)/) {
-        my $test = $1;
-        
-        if ( $test eq $uuid ) {
-            return 1;
-        }
+        return $1
     } else {
         print STDERR "Can't understand the output from dwarfdump ($TEST_uuid -> $cmd)\n";
-        return 0;
     }
 
+    return undef;
+}
+
+sub matchesUUID {  
+    my ($path, $uuid, $arch) = @_;
+    
+    my $imageUUID = UUIDFromImage($path, $arch);
+    
+    if ( $imageUUID eq $uuid ) {
+        return 1;
+    }
+    
     return 0;
 }
 
@@ -192,7 +199,7 @@ sub parse_sections {
     return \%sections;
 }
 
-sub parse_image_uuid {
+sub parse_image {
     my ($log_ref,$bundle_id) = @_;
     my $section = parse_section($log_ref,'Binary Images',multiline=>1);
     if (!defined($section)) {
@@ -201,11 +208,36 @@ sub parse_image_uuid {
     
     my @lines = split /\n/, $section;
     for my $line (@lines) {
-        if ($line =~ /$bundle_id\s*\(.*\)\s*\<([[:xdigit:]-]+)\>/) {
-            return $1;
+        if ($line =~ /$bundle_id/) {
+            return $line;
         }
     }
     
+    return undef;
+}
+
+sub parse_image_uuid {
+    my ($log_ref,$bundle_id) = @_;
+    
+    my $imageInfo = parse_image($log_ref,$bundle_id);
+    
+    if ($imageInfo =~ /$bundle_id\s*\(.*\)\s*\<([[:xdigit:]-]+)\>/) {
+        return $1;
+    }
+    
+    die "Error: Couldn't find UUID for binary image for '$bundle_id'";
+    return undef;
+}
+
+sub parse_load_address {
+    my ($log_ref,$bundle_id) = @_;
+    
+    my $imageInfo = parse_image($log_ref,$bundle_id);
+
+    if ($imageInfo =~ /\s*([x[:xdigit:]]+)/) {
+        return $1;
+    }
+
     die "Error: Couldn't find UUID for binary image for '$bundle_id'";
     return undef;
 }
@@ -225,7 +257,7 @@ sub parse_backtrace {
             .*) \s* $    # current description, to be replaced (2)
         }x ) {
             my($bundle,$replace,$address) = ($1,$2,$3);
-            #print STDERR "Parse_bt: $bundle,$replace,$address\n" if ($opt{v});
+            # print STDERR "Parse_bt: $bundle,$replace,$address\n" if ($opt{v});
             
             # disambiguate within our hash of binaries
             # $bundle = findImageByNameAndAddress($images, $bundle, $address);
@@ -296,15 +328,18 @@ sub parse_OSVersion {
 
 sub parse_bundle_identifier {
     my ($log_ref) = @_;
+    my $pluginIdentifier = parse_section($log_ref,'PlugIn Identifier');
+    $pluginIdentifier =~ /([\w\.]+)/;
     my $identifier = parse_section($log_ref,'Identifier');
     $identifier =~ /([\w\.]+)/;
-    return $identifier;
+    return length($pluginIdentifier) > 0 ? basename($pluginIdentifier) : basename($identifier);
 }
 
 sub parse_executable_name {
     my ($log_ref) = @_;
+    my $pluginPath = parse_section($log_ref,'PlugIn Path');
     my $path = parse_section($log_ref,'Path');
-    return basename($path);
+    return length($pluginPath) > 0 ? basename($pluginPath) : basename($path);
 }
 
 # Map from the "Code Type" field of the crash log, to a Mac OS X
@@ -334,9 +369,12 @@ sub symbolize_frames {
     # and for framework => arch
     my %frames_to_lookup = ();
     my %arch_map = ();
+    my $load_address = undef;
     
     for my $k (keys %$bt) {
+        # print STDERR "key: '$k'\n" if ($opt{v});
         my $frame = $$bt{$k};
+        # print STDERR "frame: '$$frame{bundle}'\n" if ($opt{v});
         
         my $lib = $$images{$$frame{bundle}};
         unless($lib) {
@@ -347,12 +385,9 @@ sub symbolize_frames {
             next;
         }
         
-        # adjust address for sliding
+        $load_address = $$lib{load_address};
+        
         my $address = $$frame{address};
-        if($$lib{slide}) {
-            $address = sprintf "0x%08x", hex($$frame{address}) + $$lib{slide};
-            $$frame{address} = $address;
-        }
         
         # list of address to lookup, mapped to the frame object, for
         # each library
@@ -369,7 +404,7 @@ sub symbolize_frames {
         # run atos with the addresses and binary files we just gathered
         my $arch = $arch_map{$symbol};
         # my $cmd = "$atos -arch $arch -o '$escapedSymbol' @{[ keys %$frames ]} | ";
-        my $cmd = "atos -arch $arch -o '$escapedSymbol' @{[ keys %$frames ]} | ";
+        my $cmd = "atos -arch $arch -l $load_address -o '$escapedSymbol' @{[ keys %$frames ]} | ";
         
         print STDERR "Running $cmd\n" if $opt{v};
         
@@ -458,18 +493,28 @@ sub symbolicate_log {
     my $bundle_id = parse_bundle_identifier($log_ref);
     my $executable_name = parse_executable_name($log_ref);
     my $uuid = parse_image_uuid ($log_ref, $bundle_id);
+    my $load_address = parse_load_address ($log_ref, $bundle_id);
     my $symbol = "$dSYM_path/Contents/Resources/DWARF/$executable_name";
     my $arch = parse_arch($log_ref);
     
+    print STDERR "Bundle ID: $bundle_id\n" if $opt{v};
+    print STDERR "Excutable name: $executable_name\n" if $opt{v};
+    print STDERR "Load address: $load_address\n" if $opt{v};
+    print STDERR "Image UUID: $uuid\n" if $opt{v};
+    print STDERR "Symbol path: $symbol\n" if $opt{v};
+    print STDERR "Architecture: $arch\n" if $opt{v};
+    
     if (!matchesUUID($symbol, $uuid, $arch)) {
-        die "Error: Symbol UUID does not match crash log image UUID <$uuid>";
+        my $symbolUUID = UUIDFromImage($symbol, $arch);
+        die "Error: Symbol UUID <$symbolUUID> does not match crash log image UUID <$uuid>";
     }
     
     my $images = {
-        "com.acqualia.soulver" => {
+        "$bundle_id" => {
             uuid => $uuid,
             arch => $arch,
             symbol => $symbol,
+            load_address => $load_address,
         }
     };
     
