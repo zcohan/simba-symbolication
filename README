@@ -7,6 +7,8 @@ This version of the script is targeted specifically at Mac app crash logs. Usage
 symbolicatecrash-mac crashlog.crash path-to-dSYM
 
 
-
 Status:
 I hacked this together one night after getting annoyed at the lack of automatic symbolication for Mac crash logs. It's pretty crude and could do with improvements. I've completely stripped out the "spotlight searching" functionality present in the iOS version of the script.
+
+Updated Status:
+Also included is a GUI frontend for the script called Simba. Just drag your .dSYM and .crash onto Simba's dock icon, and it will present you with the symbolicated crash report.
