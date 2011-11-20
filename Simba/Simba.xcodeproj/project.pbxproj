@@ -15,10 +15,10 @@
 		119571E4146BF64D003DDD6A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119571E2146BF64D003DDD6A /* MainMenu.xib */; };
 		119571EC146BF711003DDD6A /* SBMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571EB146BF711003DDD6A /* SBMainWindowController.m */; };
 		119571EF146BF81D003DDD6A /* SBFileAcceptingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571EE146BF81D003DDD6A /* SBFileAcceptingImageView.m */; };
-		119571F3146BF8CE003DDD6A /* symbolicatecrash-mac.pl in Resources */ = {isa = PBXBuildFile; fileRef = 119571F2146BF8CE003DDD6A /* symbolicatecrash-mac.pl */; };
 		119571F6146C0571003DDD6A /* SBSymbolicationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */; };
 		119571FA146C05D4003DDD6A /* SymbolicationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119571F8146C05D4003DDD6A /* SymbolicationWindow.xib */; };
 		119571FC146C1461003DDD6A /* Simba.icns in Resources */ = {isa = PBXBuildFile; fileRef = 119571FB146C1461003DDD6A /* Simba.icns */; };
+		24FF798614790B360012448C /* symbolicatecrash-mac in Resources */ = {isa = PBXBuildFile; fileRef = 24FF798514790B360012448C /* symbolicatecrash-mac */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,11 +39,11 @@
 		119571EB146BF711003DDD6A /* SBMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMainWindowController.m; sourceTree = "<group>"; };
 		119571ED146BF81D003DDD6A /* SBFileAcceptingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFileAcceptingImageView.h; sourceTree = "<group>"; };
 		119571EE146BF81D003DDD6A /* SBFileAcceptingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBFileAcceptingImageView.m; sourceTree = "<group>"; };
-		119571F2146BF8CE003DDD6A /* symbolicatecrash-mac.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "symbolicatecrash-mac.pl"; sourceTree = "<group>"; };
 		119571F4146C0570003DDD6A /* SBSymbolicationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSymbolicationWindowController.h; sourceTree = "<group>"; };
 		119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSymbolicationWindowController.m; sourceTree = "<group>"; };
 		119571F9146C05D4003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SymbolicationWindow.xib; sourceTree = "<group>"; };
 		119571FB146C1461003DDD6A /* Simba.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Simba.icns; sourceTree = "<group>"; };
+		24FF798514790B360012448C /* symbolicatecrash-mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "symbolicatecrash-mac"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +131,7 @@
 		119571D4146BF64D003DDD6A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				119571F2146BF8CE003DDD6A /* symbolicatecrash-mac.pl */,
+				24FF798314790B030012448C /* Symbolication script */,
 				119571D5146BF64D003DDD6A /* Simba-Info.plist */,
 				119571D6146BF64D003DDD6A /* InfoPlist.strings */,
 				119571D9146BF64D003DDD6A /* main.m */,
@@ -149,6 +149,15 @@
 				119571FB146C1461003DDD6A /* Simba.icns */,
 			);
 			name = Nibs;
+			sourceTree = "<group>";
+		};
+		24FF798314790B030012448C /* Symbolication script */ = {
+			isa = PBXGroup;
+			children = (
+				24FF798514790B360012448C /* symbolicatecrash-mac */,
+			);
+			name = "Symbolication script";
+			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,9 +214,9 @@
 				119571D8146BF64D003DDD6A /* InfoPlist.strings in Resources */,
 				119571DE146BF64D003DDD6A /* Credits.rtf in Resources */,
 				119571E4146BF64D003DDD6A /* MainMenu.xib in Resources */,
-				119571F3146BF8CE003DDD6A /* symbolicatecrash-mac.pl in Resources */,
 				119571FA146C05D4003DDD6A /* SymbolicationWindow.xib in Resources */,
 				119571FC146C1461003DDD6A /* Simba.icns in Resources */,
+				24FF798614790B360012448C /* symbolicatecrash-mac in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

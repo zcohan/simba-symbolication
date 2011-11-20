@@ -33,7 +33,7 @@
 
 - (IBAction)symbolicate:(id)sender {
     
-    NSString *pathToSymbolicator = [[NSBundle mainBundle] pathForResource:@"symbolicatecrash-mac" ofType:@"pl"];
+    NSString *pathToSymbolicator = [[NSBundle mainBundle] pathForResource:@"symbolicatecrash-mac" ofType:nil];
         
     if (!self.crashFilePath || !self.dSYMPath){
         NSLog(@"Warning: No crash file or dsymFile, cannot symbolicate");
