@@ -1,0 +1,358 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		119571CE146BF64D003DDD6A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119571CD146BF64D003DDD6A /* Cocoa.framework */; };
+		119571D8146BF64D003DDD6A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 119571D6146BF64D003DDD6A /* InfoPlist.strings */; };
+		119571DA146BF64D003DDD6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571D9146BF64D003DDD6A /* main.m */; };
+		119571DE146BF64D003DDD6A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 119571DC146BF64D003DDD6A /* Credits.rtf */; };
+		119571E1146BF64D003DDD6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571E0146BF64D003DDD6A /* AppDelegate.m */; };
+		119571E4146BF64D003DDD6A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119571E2146BF64D003DDD6A /* MainMenu.xib */; };
+		119571EC146BF711003DDD6A /* SBMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571EB146BF711003DDD6A /* SBMainWindowController.m */; };
+		119571EF146BF81D003DDD6A /* SBFileAcceptingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571EE146BF81D003DDD6A /* SBFileAcceptingImageView.m */; };
+		119571F3146BF8CE003DDD6A /* symbolicatecrash-mac.pl in Resources */ = {isa = PBXBuildFile; fileRef = 119571F2146BF8CE003DDD6A /* symbolicatecrash-mac.pl */; };
+		119571F6146C0571003DDD6A /* SBSymbolicationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */; };
+		119571FA146C05D4003DDD6A /* SymbolicationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119571F8146C05D4003DDD6A /* SymbolicationWindow.xib */; };
+		119571FC146C1461003DDD6A /* Simba.icns in Resources */ = {isa = PBXBuildFile; fileRef = 119571FB146C1461003DDD6A /* Simba.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		119571C9146BF64D003DDD6A /* Simba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simba.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		119571CD146BF64D003DDD6A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		119571D0146BF64D003DDD6A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		119571D1146BF64D003DDD6A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		119571D2146BF64D003DDD6A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		119571D5146BF64D003DDD6A /* Simba-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Simba-Info.plist"; sourceTree = "<group>"; };
+		119571D7146BF64D003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		119571D9146BF64D003DDD6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		119571DB146BF64D003DDD6A /* Simba-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Simba-Prefix.pch"; sourceTree = "<group>"; };
+		119571DD146BF64D003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		119571DF146BF64D003DDD6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		119571E0146BF64D003DDD6A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		119571E3146BF64D003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		119571EA146BF711003DDD6A /* SBMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMainWindowController.h; sourceTree = "<group>"; };
+		119571EB146BF711003DDD6A /* SBMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMainWindowController.m; sourceTree = "<group>"; };
+		119571ED146BF81D003DDD6A /* SBFileAcceptingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFileAcceptingImageView.h; sourceTree = "<group>"; };
+		119571EE146BF81D003DDD6A /* SBFileAcceptingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBFileAcceptingImageView.m; sourceTree = "<group>"; };
+		119571F2146BF8CE003DDD6A /* symbolicatecrash-mac.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "symbolicatecrash-mac.pl"; sourceTree = "<group>"; };
+		119571F4146C0570003DDD6A /* SBSymbolicationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSymbolicationWindowController.h; sourceTree = "<group>"; };
+		119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSymbolicationWindowController.m; sourceTree = "<group>"; };
+		119571F9146C05D4003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SymbolicationWindow.xib; sourceTree = "<group>"; };
+		119571FB146C1461003DDD6A /* Simba.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Simba.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		119571C6146BF64D003DDD6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119571CE146BF64D003DDD6A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1110F976146CA505001DFAC5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				119571ED146BF81D003DDD6A /* SBFileAcceptingImageView.h */,
+				119571EE146BF81D003DDD6A /* SBFileAcceptingImageView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1110F977146CA50B001DFAC5 /* Window Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				119571EA146BF711003DDD6A /* SBMainWindowController.h */,
+				119571EB146BF711003DDD6A /* SBMainWindowController.m */,
+				119571F4146C0570003DDD6A /* SBSymbolicationWindowController.h */,
+				119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */,
+			);
+			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		119571BE146BF64D003DDD6A = {
+			isa = PBXGroup;
+			children = (
+				119571D3146BF64D003DDD6A /* Simba */,
+				119571CC146BF64D003DDD6A /* Frameworks */,
+				119571CA146BF64D003DDD6A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		119571CA146BF64D003DDD6A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				119571C9146BF64D003DDD6A /* Simba.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		119571CC146BF64D003DDD6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				119571CD146BF64D003DDD6A /* Cocoa.framework */,
+				119571CF146BF64D003DDD6A /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		119571CF146BF64D003DDD6A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				119571D0146BF64D003DDD6A /* AppKit.framework */,
+				119571D1146BF64D003DDD6A /* CoreData.framework */,
+				119571D2146BF64D003DDD6A /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		119571D3146BF64D003DDD6A /* Simba */ = {
+			isa = PBXGroup;
+			children = (
+				119571DF146BF64D003DDD6A /* AppDelegate.h */,
+				119571E0146BF64D003DDD6A /* AppDelegate.m */,
+				1110F977146CA50B001DFAC5 /* Window Controllers */,
+				1110F976146CA505001DFAC5 /* Views */,
+				119571F7146C05B0003DDD6A /* Nibs */,
+				119571D4146BF64D003DDD6A /* Supporting Files */,
+			);
+			name = Simba;
+			path = Symbolicator;
+			sourceTree = "<group>";
+		};
+		119571D4146BF64D003DDD6A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				119571F2146BF8CE003DDD6A /* symbolicatecrash-mac.pl */,
+				119571D5146BF64D003DDD6A /* Simba-Info.plist */,
+				119571D6146BF64D003DDD6A /* InfoPlist.strings */,
+				119571D9146BF64D003DDD6A /* main.m */,
+				119571DB146BF64D003DDD6A /* Simba-Prefix.pch */,
+				119571DC146BF64D003DDD6A /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		119571F7146C05B0003DDD6A /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				119571E2146BF64D003DDD6A /* MainMenu.xib */,
+				119571F8146C05D4003DDD6A /* SymbolicationWindow.xib */,
+				119571FB146C1461003DDD6A /* Simba.icns */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		119571C8146BF64D003DDD6A /* Simba */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119571E7146BF64D003DDD6A /* Build configuration list for PBXNativeTarget "Simba" */;
+			buildPhases = (
+				119571C5146BF64D003DDD6A /* Sources */,
+				119571C6146BF64D003DDD6A /* Frameworks */,
+				119571C7146BF64D003DDD6A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Simba;
+			productName = Symbolicator;
+			productReference = 119571C9146BF64D003DDD6A /* Simba.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		119571C0146BF64D003DDD6A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Acqualia Software";
+			};
+			buildConfigurationList = 119571C3146BF64D003DDD6A /* Build configuration list for PBXProject "Simba" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 119571BE146BF64D003DDD6A;
+			productRefGroup = 119571CA146BF64D003DDD6A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				119571C8146BF64D003DDD6A /* Simba */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		119571C7146BF64D003DDD6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119571D8146BF64D003DDD6A /* InfoPlist.strings in Resources */,
+				119571DE146BF64D003DDD6A /* Credits.rtf in Resources */,
+				119571E4146BF64D003DDD6A /* MainMenu.xib in Resources */,
+				119571F3146BF8CE003DDD6A /* symbolicatecrash-mac.pl in Resources */,
+				119571FA146C05D4003DDD6A /* SymbolicationWindow.xib in Resources */,
+				119571FC146C1461003DDD6A /* Simba.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		119571C5146BF64D003DDD6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119571DA146BF64D003DDD6A /* main.m in Sources */,
+				119571E1146BF64D003DDD6A /* AppDelegate.m in Sources */,
+				119571EC146BF711003DDD6A /* SBMainWindowController.m in Sources */,
+				119571EF146BF81D003DDD6A /* SBFileAcceptingImageView.m in Sources */,
+				119571F6146C0571003DDD6A /* SBSymbolicationWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		119571D6146BF64D003DDD6A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119571D7146BF64D003DDD6A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		119571DC146BF64D003DDD6A /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119571DD146BF64D003DDD6A /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		119571E2146BF64D003DDD6A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119571E3146BF64D003DDD6A /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		119571F8146C05D4003DDD6A /* SymbolicationWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				119571F9146C05D4003DDD6A /* en */,
+			);
+			name = SymbolicationWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		119571E5146BF64D003DDD6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		119571E6146BF64D003DDD6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		119571E8146BF64D003DDD6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
+				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
+				PRODUCT_NAME = Simba;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		119571E9146BF64D003DDD6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
+				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
+				PRODUCT_NAME = Simba;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		119571C3146BF64D003DDD6A /* Build configuration list for PBXProject "Simba" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119571E5146BF64D003DDD6A /* Debug */,
+				119571E6146BF64D003DDD6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		119571E7146BF64D003DDD6A /* Build configuration list for PBXNativeTarget "Simba" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119571E8146BF64D003DDD6A /* Debug */,
+				119571E9146BF64D003DDD6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 119571C0146BF64D003DDD6A /* Project object */;
+}
