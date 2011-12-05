@@ -221,8 +221,8 @@ sub parse_image_uuid {
     
     my $imageInfo = parse_image($log_ref,$bundle_id);
     
-    if ($imageInfo =~ /$bundle_id\s*\(.*\)\s*\<([[:xdigit:]-]+)\>/) {
-        return $1;
+    if ($imageInfo =~ /$bundle_id\s*([\d.]+)?\s*(\([^<]+\))?\s*\<([[:xdigit:]-]+)\>/) {
+        return $3;
     }
     
     die "Error: Couldn't find UUID for binary image for '$bundle_id'";
@@ -329,7 +329,7 @@ sub parse_OSVersion {
 sub parse_bundle_identifier {
     my ($log_ref) = @_;
     my $pluginIdentifier = parse_section($log_ref,'PlugIn Identifier');
-    $pluginIdentifier =~ /([\w\.]+)/;
+    $pluginIdentifier =~ /([\w\.]+)/ if (defined($pluginIdentifier));
     my $identifier = parse_section($log_ref,'Identifier');
     $identifier =~ /([\w\.]+)/;
     return length($pluginIdentifier) > 0 ? basename($pluginIdentifier) : basename($identifier);
