@@ -72,7 +72,7 @@
     if (nil == carriedData)
     {
         //the operation failed for some reason
-        NSRunAlertPanel(@"Paste Error", @"Sorry, but the past operation failed", 
+        NSRunAlertPanel(@"Paste Error", @"Sorry, but the paste operation failed",
 						nil, nil, nil);
         return NO;
     }

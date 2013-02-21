@@ -25,10 +25,53 @@
             self.crashFilePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBCrashFilePath"];
     }
 
-    
-    self.crashFileImageWell.preferredFileExtension = @"crash";
+
+    // DOn't set preferred file type - we also want to accept TXT and RTF files
+    //self.crashFileImageWell.preferredFileExtension = @"crash";
+
     self.dSYMImageWell.preferredFileExtension = @"dSYM";
     
+}
+
+// from http://www.cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html with thanks
+struct TempFile
+{
+    NSString     *name;
+    NSFileHandle *handle;
+};
+
+static
+struct TempFile MakeTemporaryFileName()
+{
+    NSString *tempFileTemplate = [NSTemporaryDirectory() stringByAppendingPathComponent:@"SimbaTempFile.XXXXXX"];
+    const char *tempFileTemplateCString = [tempFileTemplate fileSystemRepresentation];
+    char *tempFileNameCString = (char *)malloc(strlen(tempFileTemplateCString) + 1);
+    strcpy(tempFileNameCString, tempFileTemplateCString);
+    int fileDescriptor = mkstemp(tempFileNameCString);
+
+    if (fileDescriptor == -1)
+    {
+        // handle file creation failure
+        NSLog(@"Error making temp file");
+        return (struct TempFile){nil,nil};
+    }
+
+    struct TempFile ret =
+    {
+        [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString length:strlen(tempFileNameCString)],
+        [[NSFileHandle alloc] initWithFileDescriptor:fileDescriptor closeOnDealloc:YES]
+    };
+    free(tempFileNameCString);
+
+    return ret;
+}
+
+static void Whinge(NSString *string)
+{
+
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText:string];
+    [alert runModal];
 }
 
 - (IBAction)symbolicate:(id)sender {
@@ -39,11 +82,45 @@
         NSLog(@"Warning: No crash file or dsymFile, cannot symbolicate");
         return;
     }
+
+    NSString *sourceFile = self.crashFilePath;
+
+    // Convert RTF to TXT, if necessary
+    {
+        if ([[sourceFile pathExtension] caseInsensitiveCompare:@"rtf"] == NSOrderedSame)
+        {
+            struct TempFile convertedFile = MakeTemporaryFileName();
+
+            NSTask *task = [NSTask new];
+            [task setLaunchPath:@"/usr/bin/textutil"];
+            [task setArguments:[NSArray arrayWithObjects:@"-convert", @"txt", sourceFile, @"-stdout", nil]];
+            [task setStandardOutput:convertedFile.handle];
+
+            @try
+            {
+                [task launch];
+
+                // TODO: Nicer wait with timeout!
+                while (task.isRunning) ;
+
+                if (task.terminationStatus != 0)
+                {
+                    Whinge(@"Conversion to TXT failed, sadly.");
+                }
+
+                sourceFile = convertedFile.name;
+            }
+            @catch (NSException *exception) {
+                Whinge(@"Failed to run the RTF converter.");
+            }
+        }
+    }
+    
     
     NSTask *task = [NSTask new];
 
     [task setLaunchPath:pathToSymbolicator];
-    [task setArguments:[NSArray arrayWithObjects:self.crashFilePath, self.dSYMPath, nil]];
+    [task setArguments:[NSArray arrayWithObjects:sourceFile, self.dSYMPath, nil]];
         
     NSPipe *readPipe = [NSPipe pipe];
     NSPipe *errorPipe = [NSPipe pipe];
