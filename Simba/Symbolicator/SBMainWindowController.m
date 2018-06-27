@@ -62,7 +62,7 @@
         NSLog(@"Warning no standard data returned");
         
         NSData *errorData = [errorHandle readDataToEndOfFile];
-        NSString *errorString = [[[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding] autorelease];
+        NSString *errorString = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
         
         //handle the error nik was telling me about
         NSString *standardErrorPrefix = @"Error: Symbol UUID";
@@ -83,7 +83,7 @@
     }
     
     
-    NSString *symbolicatedCrashReport = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    NSString *symbolicatedCrashReport = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     if (![symbolicatedCrashReport length]){
         NSLog(@"Error interpreting data");
@@ -95,7 +95,6 @@
     symbolicatorWindowController.fileName = [self.crashFilePath lastPathComponent];
     
     [symbolicatorWindowController showWindow:nil];
-    [task release];
     
     
 }
@@ -117,8 +116,6 @@
 - (void)setDSYMPath:(NSString *)aDSYMPath
 {
     if (dSYMPath != aDSYMPath) {
-        [aDSYMPath retain];
-        [dSYMPath release];
         dSYMPath = aDSYMPath;
         dSYMImageWell.filePath = self.dSYMPath;
         [[NSUserDefaults standardUserDefaults] setObject:self.dSYMPath forKey:@"SBdSYMPath"];
@@ -136,8 +133,6 @@
 - (void)setCrashFilePath:(NSString *)aCrashFilePath
 {
     if (crashFilePath != aCrashFilePath) {
-        [aCrashFilePath retain];
-        [crashFilePath release];
         crashFilePath = aCrashFilePath;
         [[NSUserDefaults standardUserDefaults] setObject:self.crashFilePath forKey:@"SBCrashFilePath"];
 

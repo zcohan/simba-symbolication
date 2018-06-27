@@ -13,10 +13,6 @@
 @synthesize window = _window;
 @synthesize mainWindowController;
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {

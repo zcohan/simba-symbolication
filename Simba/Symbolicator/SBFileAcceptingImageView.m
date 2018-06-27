@@ -23,18 +23,18 @@
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
 {
     if ((NSDragOperationGeneric & [sender draggingSourceOperationMask]) 
-		== NSDragOperationGeneric)
+        == NSDragOperationGeneric)
     {
         //this means that the sender is offering the type of operation we want
         //return that we want the NSDragOperationGeneric operation that they 
-		//are offering
+        //are offering
 
         return NSDragOperationCopy;
     }
     else
     {
         //since they aren't offering the type of operation we want, we have 
-		//to tell them we aren't interested
+        //to tell them we aren't interested
         return NSDragOperationNone;
     }
 }
@@ -45,35 +45,35 @@
 {
     //we aren't particularily interested in this so we will do nothing
     //this is one of the methods that we do not have to implement
-//	NSLog(@"%@", sender);
+//    NSLog(@"%@", sender);
 }
 
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
 {
-	NSPasteboard *pboard = [sender draggingPasteboard];
-	
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    
     if ( [[pboard types] containsObject:NSFilenamesPboardType] ) {
-		//  NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+        //  NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         //NSLog(@"%@", files);
         // Perform operation using the list of files
     }
-	
-	
+    
+    
     NSPasteboard *paste = [sender draggingPasteboard];
-	
-	//gets the dragging-specific pasteboard from the sender
+    
+    //gets the dragging-specific pasteboard from the sender
     NSArray *types = [NSArray arrayWithObject: 
-					  NSFilenamesPboardType];
-	//a list of types that we can accept
+                      NSFilenamesPboardType];
+    //a list of types that we can accept
     NSString *desiredType = [paste availableTypeFromArray:types];
     NSData *carriedData = [paste dataForType:desiredType];
-	
+    
     if (nil == carriedData)
     {
         //the operation failed for some reason
         NSRunAlertPanel(@"Paste Error", @"Sorry, but the past operation failed", 
-						nil, nil, nil);
+                        nil, nil, nil);
         return NO;
     }
     else
@@ -82,9 +82,9 @@
         {
             //we have a list of file names in an NSData object
             NSArray *fileArray = 
-			[paste propertyListForType:NSFilenamesPboardType];
-			//be caseful since this method returns id.  
-			//We just happen to know that it will be an array.
+            [paste propertyListForType:NSFilenamesPboardType];
+            //be caseful since this method returns id.  
+            //We just happen to know that it will be an array.
                         
             for (NSString *aFilePath in fileArray) {
                 
@@ -129,8 +129,7 @@
 
 - (void)setFilePath:(NSString *)aFilePath{
     if (filePath != aFilePath){
-        [filePath release];
-        filePath = [aFilePath retain];
+        filePath = aFilePath;
         if (filePath){
              [self setImage:[[NSWorkspace sharedWorkspace] iconForFile:filePath]];   
         }

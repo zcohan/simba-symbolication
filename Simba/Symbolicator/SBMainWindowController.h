@@ -11,11 +11,11 @@
 
 @interface SBMainWindowController : NSObject
 
-@property (assign) IBOutlet SBFileAcceptingImageView *dSYMImageWell;
-@property (assign) IBOutlet SBFileAcceptingImageView *crashFileImageWell;
+@property (weak) IBOutlet SBFileAcceptingImageView *dSYMImageWell;
+@property (weak) IBOutlet SBFileAcceptingImageView *crashFileImageWell;
 
-@property (retain, nonatomic) NSString *dSYMPath;
-@property (retain, nonatomic) NSString *crashFilePath;
+@property (strong, nonatomic) NSString *dSYMPath;
+@property (strong, nonatomic) NSString *crashFilePath;
 
 @property (nonatomic) BOOL canSymbolicate;
 

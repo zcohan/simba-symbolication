@@ -10,9 +10,9 @@
 
 @interface SBSymbolicationWindowController : NSWindowController
 
-@property (retain, nonatomic) NSString *fileName;
-@property (retain, nonatomic) NSString *crashReport;
-@property (assign) IBOutlet NSTextView *textView;
+@property (strong, nonatomic) NSString *fileName;
+@property (strong, nonatomic) NSString *crashReport;
+@property (unsafe_unretained) IBOutlet NSTextView *textView;
 
 
 - (IBAction)saveToFile:(id)sender;

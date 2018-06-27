@@ -10,9 +10,9 @@
 
 @interface SBFileAcceptingImageView : NSImageView
 
-@property (nonatomic, assign) IBOutlet SBFileAcceptingImageView *neighbourFileAcceptingImageView;
+@property (nonatomic, weak) IBOutlet SBFileAcceptingImageView *neighbourFileAcceptingImageView;
 
-@property (nonatomic, retain) NSString *preferredFileExtension;
-@property (nonatomic, retain) NSString *filePath;
+@property (nonatomic, strong) NSString *preferredFileExtension;
+@property (nonatomic, strong) NSString *filePath;
 
 @end
