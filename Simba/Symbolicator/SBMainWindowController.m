@@ -42,23 +42,23 @@
     
     NSTask *task = [NSTask new];
 
-    [task setLaunchPath:pathToSymbolicator];
-    [task setArguments:[NSArray arrayWithObjects:self.crashFilePath, self.dSYMPath, nil]];
+    task.launchPath = pathToSymbolicator;
+    task.arguments = @[self.crashFilePath, self.dSYMPath];
         
     NSPipe *readPipe = [NSPipe pipe];
     NSPipe *errorPipe = [NSPipe pipe];
     
-    [task setStandardOutput:readPipe];
-    [task setStandardError:errorPipe];
+    task.standardOutput = readPipe;
+    task.standardError = errorPipe;
     
-    NSFileHandle *readHandle = [readPipe fileHandleForReading];
-    NSFileHandle *errorHandle = [errorPipe fileHandleForReading];
+    NSFileHandle *readHandle = readPipe.fileHandleForReading;
+    NSFileHandle *errorHandle = errorPipe.fileHandleForReading;
 
     [task launch];
 
     NSData *data = [readHandle readDataToEndOfFile];
     
-    if (![data length]){
+    if (!data.length){
         NSLog(@"Warning no standard data returned");
         
         NSData *errorData = [errorHandle readDataToEndOfFile];
@@ -69,13 +69,13 @@
         
         if ([errorString rangeOfString:standardErrorPrefix].location != NSNotFound){
             NSAlert *alert = [NSAlert new];
-            [alert setAlertStyle:NSWarningAlertStyle];
-            [alert setMessageText:@"The crash report does not match the dSYM file and cannot be symbolicated."];
+            alert.alertStyle = NSWarningAlertStyle;
+            alert.messageText = @"The crash report does not match the dSYM file and cannot be symbolicated.";
             
             NSString *stringToParseUpTo = @"at /";
             NSRange rangeOfStringToParseUpTo = [errorString rangeOfString:stringToParseUpTo];
             
-            [alert setInformativeText:[errorString substringToIndex:rangeOfStringToParseUpTo.location]];
+            alert.informativeText = [errorString substringToIndex:rangeOfStringToParseUpTo.location];
             [alert runModal];
         }
         
@@ -85,14 +85,14 @@
     
     NSString *symbolicatedCrashReport = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    if (![symbolicatedCrashReport length]){
+    if (!symbolicatedCrashReport.length){
         NSLog(@"Error interpreting data");
         return;
     }
     
     SBSymbolicationWindowController *symbolicatorWindowController = [[SBSymbolicationWindowController alloc] initWithWindowNibName:@"SymbolicationWindow"];
     symbolicatorWindowController.crashReport = symbolicatedCrashReport;
-    symbolicatorWindowController.fileName = [self.crashFilePath lastPathComponent];
+    symbolicatorWindowController.fileName = (self.crashFilePath).lastPathComponent;
     
     [symbolicatorWindowController showWindow:nil];
     

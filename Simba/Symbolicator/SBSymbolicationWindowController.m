@@ -13,7 +13,7 @@
 @synthesize crashReport;
 @synthesize textView;
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
     if (self) {
@@ -25,7 +25,7 @@
 
 - (void)_highlightRange:(NSValue *)aRangeValue{
     
-    [textView showFindIndicatorForRange:[aRangeValue rangeValue]];
+    [textView showFindIndicatorForRange:aRangeValue.rangeValue];
 }
 
 
@@ -33,8 +33,8 @@
 {
     [super windowDidLoad];
         
-    [textView setString:crashReport];
-    [[self window] setTitle:fileName];
+    textView.string = crashReport;
+    self.window.title = fileName;
     
     NSString *stringToHoneInOn = @"Crashed::";
     NSRange rangeOfStringToHoneInOn = [crashReport rangeOfString:stringToHoneInOn];
@@ -42,7 +42,7 @@
     if (rangeOfStringToHoneInOn.location != NSNotFound){
         [textView scrollRangeToVisible:rangeOfStringToHoneInOn];
         
-        NSRange rangeToTheEndOfThatLine = [crashReport rangeOfString:@"\n" options:NSCaseInsensitiveSearch range:NSMakeRange(rangeOfStringToHoneInOn.location+rangeOfStringToHoneInOn.length, [crashReport length]-(rangeOfStringToHoneInOn.location+rangeOfStringToHoneInOn.length))];
+        NSRange rangeToTheEndOfThatLine = [crashReport rangeOfString:@"\n" options:NSCaseInsensitiveSearch range:NSMakeRange(rangeOfStringToHoneInOn.location+rangeOfStringToHoneInOn.length, crashReport.length-(rangeOfStringToHoneInOn.location+rangeOfStringToHoneInOn.length))];
         
         NSRange rangeToTheBeginningOfTheLine = [crashReport rangeOfString:@"\n" options:NSBackwardsSearch range:NSMakeRange(rangeOfStringToHoneInOn.location - 20, 20)];
         
@@ -57,13 +57,13 @@
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
         
-    [savePanel setAllowedFileTypes:[NSArray arrayWithObject:@"crash"]];
-    [savePanel setNameFieldStringValue:fileName];
+    savePanel.allowedFileTypes = @[@"crash"];
+    savePanel.nameFieldStringValue = fileName;
     [savePanel setExtensionHidden:NO];
     
-    [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+    [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         
-        NSURL *savePanelURL = [savePanel URL];
+        NSURL *savePanelURL = savePanel.URL;
         
         [crashReport writeToURL:savePanelURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
         

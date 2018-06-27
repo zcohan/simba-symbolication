@@ -27,10 +27,10 @@
     NSLog(@"Files are %@", filenames);
     
     for (NSString *path in filenames){
-        if ([[path pathExtension] isEqualToString:@"dSYM"]){
+        if ([path.pathExtension isEqualToString:@"dSYM"]){
             mainWindowController.dSYMPath = path;
         }
-        else if ([[path pathExtension] isEqualToString:@"crash"]){
+        else if ([path.pathExtension isEqualToString:@"crash"]){
             mainWindowController.crashFilePath = path;
         }
 

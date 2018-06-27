@@ -14,8 +14,7 @@
 @synthesize preferredFileExtension;
 
 - (void)awakeFromNib{
-    [self registerForDraggedTypes:[NSArray arrayWithObjects: 
-                                   NSFilenamesPboardType, nil]];
+    [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 
 }
 
@@ -53,7 +52,7 @@
 {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
-    if ( [[pboard types] containsObject:NSFilenamesPboardType] ) {
+    if ( [pboard.types containsObject:NSFilenamesPboardType] ) {
         //  NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         //NSLog(@"%@", files);
         // Perform operation using the list of files
@@ -63,8 +62,7 @@
     NSPasteboard *paste = [sender draggingPasteboard];
     
     //gets the dragging-specific pasteboard from the sender
-    NSArray *types = [NSArray arrayWithObject: 
-                      NSFilenamesPboardType];
+    NSArray *types = @[NSFilenamesPboardType];
     //a list of types that we can accept
     NSString *desiredType = [paste availableTypeFromArray:types];
     NSData *carriedData = [paste dataForType:desiredType];
@@ -89,16 +87,16 @@
             for (NSString *aFilePath in fileArray) {
                 
                 if (!self.preferredFileExtension){
-                    [self setFilePath:aFilePath];
-                    [self sendAction:[self action] to:[self target]];
+                    self.filePath = aFilePath;
+                    [self sendAction:self.action to:self.target];
                 }
-                else if (self.preferredFileExtension && [[aFilePath pathExtension] isEqualToString:self.preferredFileExtension]){
-                    [self setFilePath:aFilePath];
-                    [self sendAction:[self action] to:[self target]];
+                else if (self.preferredFileExtension && [aFilePath.pathExtension isEqualToString:self.preferredFileExtension]){
+                    self.filePath = aFilePath;
+                    [self sendAction:self.action to:self.target];
                 }
-                else if (self.neighbourFileAcceptingImageView &&[[aFilePath pathExtension] isEqualToString:self.neighbourFileAcceptingImageView.preferredFileExtension]){
+                else if (self.neighbourFileAcceptingImageView &&[aFilePath.pathExtension isEqualToString:self.neighbourFileAcceptingImageView.preferredFileExtension]){
                     
-                        [self.neighbourFileAcceptingImageView setFilePath:aFilePath];
+                        (self.neighbourFileAcceptingImageView).filePath = aFilePath;
                         [self.neighbourFileAcceptingImageView sendAction:self.neighbourFileAcceptingImageView.action to:self.neighbourFileAcceptingImageView.target];
                 }
                 else{
@@ -120,7 +118,7 @@
 }
 
 - (void)setImage:(NSImage *)image{
-    [super setImage:image];
+    super.image = image;
     
     if (!image){
         [self setFilePath:nil];
@@ -131,7 +129,7 @@
     if (filePath != aFilePath){
         filePath = aFilePath;
         if (filePath){
-             [self setImage:[[NSWorkspace sharedWorkspace] iconForFile:filePath]];   
+             self.image = [[NSWorkspace sharedWorkspace] iconForFile:filePath];   
         }
     }
 }
