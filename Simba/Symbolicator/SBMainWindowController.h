@@ -13,9 +13,12 @@
 
 @property (weak) IBOutlet SBFileAcceptingImageView *dSYMImageWell;
 @property (weak) IBOutlet SBFileAcceptingImageView *crashFileImageWell;
+@property (weak) IBOutlet SBFileAcceptingImageView *executableImagWell;
 
 @property (strong, nonatomic) NSString *dSYMPath;
 @property (strong, nonatomic) NSString *crashFilePath;
+@property (strong, nonatomic) NSString *executablePath;
+
 
 @property (nonatomic) BOOL canSymbolicate;
 

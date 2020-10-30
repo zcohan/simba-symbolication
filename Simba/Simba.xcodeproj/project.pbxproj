@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1129186F254C0C6A00D60D66 /* AtosBasedSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1129186E254C0C6A00D60D66 /* AtosBasedSymbolicator.m */; };
 		119571CE146BF64D003DDD6A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119571CD146BF64D003DDD6A /* Cocoa.framework */; };
 		119571D8146BF64D003DDD6A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 119571D6146BF64D003DDD6A /* InfoPlist.strings */; };
 		119571DA146BF64D003DDD6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571D9146BF64D003DDD6A /* main.m */; };
@@ -18,10 +19,11 @@
 		119571F6146C0571003DDD6A /* SBSymbolicationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */; };
 		119571FA146C05D4003DDD6A /* SymbolicationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119571F8146C05D4003DDD6A /* SymbolicationWindow.xib */; };
 		119571FC146C1461003DDD6A /* Simba.icns in Resources */ = {isa = PBXBuildFile; fileRef = 119571FB146C1461003DDD6A /* Simba.icns */; };
-		24FF798614790B360012448C /* symbolicatecrash-mac in Resources */ = {isa = PBXBuildFile; fileRef = 24FF798514790B360012448C /* symbolicatecrash-mac */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1129186D254C0C6A00D60D66 /* AtosBasedSymbolicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtosBasedSymbolicator.h; sourceTree = "<group>"; };
+		1129186E254C0C6A00D60D66 /* AtosBasedSymbolicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtosBasedSymbolicator.m; sourceTree = "<group>"; };
 		119571C9146BF64D003DDD6A /* Simba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		119571CD146BF64D003DDD6A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		119571D0146BF64D003DDD6A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -43,7 +45,6 @@
 		119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSymbolicationWindowController.m; sourceTree = "<group>"; };
 		119571F9146C05D4003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SymbolicationWindow.xib; sourceTree = "<group>"; };
 		119571FB146C1461003DDD6A /* Simba.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Simba.icns; sourceTree = "<group>"; };
-		24FF798514790B360012448C /* symbolicatecrash-mac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "symbolicatecrash-mac"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +120,8 @@
 			children = (
 				119571DF146BF64D003DDD6A /* AppDelegate.h */,
 				119571E0146BF64D003DDD6A /* AppDelegate.m */,
+				1129186D254C0C6A00D60D66 /* AtosBasedSymbolicator.h */,
+				1129186E254C0C6A00D60D66 /* AtosBasedSymbolicator.m */,
 				1110F977146CA50B001DFAC5 /* Window Controllers */,
 				1110F976146CA505001DFAC5 /* Views */,
 				119571F7146C05B0003DDD6A /* Nibs */,
@@ -131,7 +134,6 @@
 		119571D4146BF64D003DDD6A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				24FF798314790B030012448C /* Symbolication script */,
 				119571D5146BF64D003DDD6A /* Simba-Info.plist */,
 				119571D6146BF64D003DDD6A /* InfoPlist.strings */,
 				119571D9146BF64D003DDD6A /* main.m */,
@@ -149,15 +151,6 @@
 				119571FB146C1461003DDD6A /* Simba.icns */,
 			);
 			name = Nibs;
-			sourceTree = "<group>";
-		};
-		24FF798314790B030012448C /* Symbolication script */ = {
-			isa = PBXGroup;
-			children = (
-				24FF798514790B360012448C /* symbolicatecrash-mac */,
-			);
-			name = "Symbolication script";
-			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +179,7 @@
 		119571C0146BF64D003DDD6A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Acqualia Software";
 			};
 			buildConfigurationList = 119571C3146BF64D003DDD6A /* Build configuration list for PBXProject "Simba" */;
@@ -194,6 +187,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 119571BE146BF64D003DDD6A;
@@ -216,7 +210,6 @@
 				119571E4146BF64D003DDD6A /* MainMenu.xib in Resources */,
 				119571FA146C05D4003DDD6A /* SymbolicationWindow.xib in Resources */,
 				119571FC146C1461003DDD6A /* Simba.icns in Resources */,
-				24FF798614790B360012448C /* symbolicatecrash-mac in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +222,7 @@
 			files = (
 				119571DA146BF64D003DDD6A /* main.m in Sources */,
 				119571E1146BF64D003DDD6A /* AppDelegate.m in Sources */,
+				1129186F254C0C6A00D60D66 /* AtosBasedSymbolicator.m in Sources */,
 				119571EC146BF711003DDD6A /* SBMainWindowController.m in Sources */,
 				119571EF146BF81D003DDD6A /* SBFileAcceptingImageView.m in Sources */,
 				119571F6146C0571003DDD6A /* SBSymbolicationWindowController.m in Sources */,
@@ -277,6 +271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -289,6 +284,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -325,6 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -337,6 +334,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -365,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
 				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
@@ -379,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
 				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
