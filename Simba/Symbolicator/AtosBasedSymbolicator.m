@@ -138,10 +138,9 @@
     
     NSString *UUIDString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
-    // Quick and dirty parse
     NSArray *components = [UUIDString componentsSeparatedByString:@" "];
     
-    if (components.count == 4) {
+    if (components.count >= 2) {
         ExecutableInfo *info = [ExecutableInfo new];
         
         info.UUID = components[1];
