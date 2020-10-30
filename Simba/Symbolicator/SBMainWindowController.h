@@ -21,6 +21,7 @@
 
 
 @property (nonatomic) BOOL canSymbolicate;
+@property (nonatomic) BOOL isProcessing;
 
 - (IBAction)symbolicate:(id)sender;
 - (IBAction)fileDraggedIn:(SBFileAcceptingImageView *)sender;

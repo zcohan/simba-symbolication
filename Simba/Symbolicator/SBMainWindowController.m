@@ -15,7 +15,7 @@
 @synthesize crashFileImageWell;
 @synthesize executableImagWell;
 @synthesize dSYMPath, crashFilePath, executablePath;
-@synthesize canSymbolicate;
+@synthesize canSymbolicate, isProcessing;
 
 - (void)awakeFromNib{
 
@@ -125,18 +125,34 @@
         return;
     }
         
-    NSString *symbolicatedCrashReport = [[AtosBasedSymbolicator new] symbolicateCrashReport:[NSURL fileURLWithPath:self.crashFilePath] usingExecutableInfo:info];
+    self.isProcessing = YES;
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
 
-    if (!symbolicatedCrashReport){
-        NSLog(@"Failed to symbolicate");
-        return;
-    }
+        NSString *symbolicatedCrashReport = [[AtosBasedSymbolicator new] symbolicateCrashReport:[NSURL fileURLWithPath:self.crashFilePath] usingExecutableInfo:info];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update the UI
+            
+            self.isProcessing = NO;
+
+            if (!symbolicatedCrashReport){
+                NSLog(@"Failed to symbolicate");
+                return;
+            }
+            
+            SBSymbolicationWindowController *symbolicatorWindowController = [[SBSymbolicationWindowController alloc] initWithWindowNibName:@"SymbolicationWindow"];
+            symbolicatorWindowController.crashReport = symbolicatedCrashReport;
+            symbolicatorWindowController.fileName = (self.crashFilePath).lastPathComponent;
+            [symbolicatorWindowController showWindow:nil];
+
+            
+        });
+
+        
+    });
     
-    SBSymbolicationWindowController *symbolicatorWindowController = [[SBSymbolicationWindowController alloc] initWithWindowNibName:@"SymbolicationWindow"];
-    symbolicatorWindowController.crashReport = symbolicatedCrashReport;
-    symbolicatorWindowController.fileName = (self.crashFilePath).lastPathComponent;
-    [symbolicatorWindowController showWindow:nil];
+    
     
 }
 
