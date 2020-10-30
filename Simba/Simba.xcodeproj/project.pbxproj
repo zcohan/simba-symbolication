@@ -24,6 +24,8 @@
 /* Begin PBXFileReference section */
 		1129186D254C0C6A00D60D66 /* AtosBasedSymbolicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtosBasedSymbolicator.h; sourceTree = "<group>"; };
 		1129186E254C0C6A00D60D66 /* AtosBasedSymbolicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtosBasedSymbolicator.m; sourceTree = "<group>"; };
+		11291872254C22FA00D60D66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		11291873254C22FA00D60D66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SymbolicationWindow.xib; sourceTree = "<group>"; };
 		119571C9146BF64D003DDD6A /* Simba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		119571CD146BF64D003DDD6A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		119571D0146BF64D003DDD6A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -36,14 +38,12 @@
 		119571DD146BF64D003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		119571DF146BF64D003DDD6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		119571E0146BF64D003DDD6A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		119571E3146BF64D003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		119571EA146BF711003DDD6A /* SBMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMainWindowController.h; sourceTree = "<group>"; };
 		119571EB146BF711003DDD6A /* SBMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMainWindowController.m; sourceTree = "<group>"; };
 		119571ED146BF81D003DDD6A /* SBFileAcceptingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFileAcceptingImageView.h; sourceTree = "<group>"; };
 		119571EE146BF81D003DDD6A /* SBFileAcceptingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBFileAcceptingImageView.m; sourceTree = "<group>"; };
 		119571F4146C0570003DDD6A /* SBSymbolicationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSymbolicationWindowController.h; sourceTree = "<group>"; };
 		119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSymbolicationWindowController.m; sourceTree = "<group>"; };
-		119571F9146C05D4003DDD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SymbolicationWindow.xib; sourceTree = "<group>"; };
 		119571FB146C1461003DDD6A /* Simba.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Simba.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +77,15 @@
 				119571F5146C0570003DDD6A /* SBSymbolicationWindowController.m */,
 			);
 			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		11291871254C22EC00D60D66 /* Symbolication */ = {
+			isa = PBXGroup;
+			children = (
+				1129186D254C0C6A00D60D66 /* AtosBasedSymbolicator.h */,
+				1129186E254C0C6A00D60D66 /* AtosBasedSymbolicator.m */,
+			);
+			name = Symbolication;
 			sourceTree = "<group>";
 		};
 		119571BE146BF64D003DDD6A = {
@@ -120,8 +129,7 @@
 			children = (
 				119571DF146BF64D003DDD6A /* AppDelegate.h */,
 				119571E0146BF64D003DDD6A /* AppDelegate.m */,
-				1129186D254C0C6A00D60D66 /* AtosBasedSymbolicator.h */,
-				1129186E254C0C6A00D60D66 /* AtosBasedSymbolicator.m */,
+				11291871254C22EC00D60D66 /* Symbolication */,
 				1110F977146CA50B001DFAC5 /* Window Controllers */,
 				1110F976146CA505001DFAC5 /* Views */,
 				119571F7146C05B0003DDD6A /* Nibs */,
@@ -184,11 +192,11 @@
 			};
 			buildConfigurationList = 119571C3146BF64D003DDD6A /* Build configuration list for PBXProject "Simba" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 119571BE146BF64D003DDD6A;
 			productRefGroup = 119571CA146BF64D003DDD6A /* Products */;
@@ -251,7 +259,7 @@
 		119571E2146BF64D003DDD6A /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				119571E3146BF64D003DDD6A /* en */,
+				11291872254C22FA00D60D66 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -259,7 +267,7 @@
 		119571F8146C05D4003DDD6A /* SymbolicationWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				119571F9146C05D4003DDD6A /* en */,
+				11291873254C22FA00D60D66 /* Base */,
 			);
 			name = SymbolicationWindow.xib;
 			sourceTree = "<group>";

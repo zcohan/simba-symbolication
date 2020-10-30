@@ -10,7 +10,7 @@
 
 @interface ExecutableInfo : NSObject
 
-@property (strong, nonatomic) NSURL *executableURL;
+@property (strong, nonatomic) NSURL *_Nonnull executableURL;
 @property (strong, nonatomic) NSString * _Nonnull UUID;
 @property (strong, nonatomic) NSString * _Nonnull architecture;
 @property (strong, nonatomic) NSString * _Nonnull loadAddress;
@@ -22,10 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AtosBasedSymbolicator : NSObject
 
 /// Uses Dwarf dump to compare UUIDs
-// https://pspdfkit.com/guides/ios/current/troubleshooting/advanced-symbolication/
-
 - (ExecutableInfo *)verifyExecutable:(NSURL *)executable matchesDSYM:(NSURL *)dsym andCrashReport:(NSURL *)crashReport;
 
+// Uses Atos to symbolicate lines in the crash report
 - (NSString *)symbolicateCrashReport:(NSURL *)crashReport usingExecutableInfo:(ExecutableInfo *)executableInfo;
 
 @end

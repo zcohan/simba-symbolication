@@ -70,8 +70,15 @@
     if (nil == carriedData)
     {
         //the operation failed for some reason
-        NSRunAlertPanel(@"Paste Error", @"Sorry, but the past operation failed", 
-                        nil, nil, nil);
+
+        NSAlert *alert = [NSAlert new];
+        alert.alertStyle = NSCriticalAlertStyle;
+        alert.messageText = @"Paste Error";
+                
+        alert.informativeText = [NSString stringWithFormat:@"Sorry, but the past operation failed."];
+        
+        [alert runModal];
+        
         return NO;
     }
     else

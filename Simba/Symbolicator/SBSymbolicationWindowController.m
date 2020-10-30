@@ -65,7 +65,7 @@
         
         NSURL *savePanelURL = savePanel.URL;
         
-        [crashReport writeToURL:savePanelURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        [self->crashReport writeToURL:savePanelURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
         
     }];
     

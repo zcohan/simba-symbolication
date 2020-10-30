@@ -12,7 +12,6 @@
 
 @end
 
-
 @implementation AtosBasedSymbolicator
 
 - (ExecutableInfo *)verifyExecutable:(NSURL *)executable matchesDSYM:(NSURL *)dsym andCrashReport:(NSURL *)crashReport {
@@ -201,7 +200,6 @@
             else {
                 
                 // non symbolication line, don't touch
-                
                 [outputLines addObject:line];
                 
             }
@@ -210,7 +208,6 @@
         
         return [outputLines componentsJoinedByString:@"\n"];
                 
-        
     }
     
 }
@@ -239,13 +236,16 @@
     if (addressToSymbolicate) {
         NSString *symbolicatedSymbol = [[self symbolicateWithAtos:addressToSymbolicate info:info] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
-        NSString *outputLine = [unsymbolicatedLine stringByReplacingOccurrencesOfString:addressToSymbolicate withString:symbolicatedSymbol];
+        if (symbolicatedSymbol) {
+            NSString *outputLine = [unsymbolicatedLine stringByReplacingOccurrencesOfString:addressToSymbolicate withString:symbolicatedSymbol];
+            
+            return outputLine;
+        }
         
-        return outputLine;
     }
             
-    
-    return @"FAILED TO SYMBOLICATE THIS LINE";
+    NSLog(@"Failed to symbolicate this line");
+    return unsymbolicatedLine;
     
 }
 
@@ -253,8 +253,8 @@
     
     NSTask *task = [NSTask new];
 
+    // Example:
 //    atos -arch x86_64 -o SoulverCore -l 0x10cd92000 0x000000010ce18bf5
-    
     task.launchPath = @"/usr/bin/xcrun";
     task.arguments = @[@"atos", @"-arch", info.architecture, @"-o", info.executableURL, @"-l", info.loadAddress, address];
         
@@ -272,8 +272,7 @@
     
     if (!data.length){
         NSLog(@"No UUID detected");
-        
-        return @"Atos failed to symbolicate this address";
+        return nil;
     }
     
     NSString *symbolicatedAddress = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
