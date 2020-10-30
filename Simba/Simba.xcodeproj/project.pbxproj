@@ -372,6 +372,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
 				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
@@ -387,6 +388,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
 				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
