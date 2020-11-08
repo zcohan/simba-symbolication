@@ -186,9 +186,7 @@
         
         NSMutableArray *outputLines = [NSMutableArray new];
         
-        NSArray *lines = [crashReportContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        
-        for (NSString * line in lines) {
+        [crashReportContents enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
             
             if ([line containsString:executableInfo.loadAddress]) {
                                 
@@ -197,14 +195,12 @@
                 
             }
             else {
-                
                 // non symbolication line, don't touch
                 [outputLines addObject:line];
-                
             }
-            
-        }
-        
+
+        }];
+                
         return [outputLines componentsJoinedByString:@"\n"];
                 
     }
