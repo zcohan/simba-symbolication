@@ -136,9 +136,38 @@
     if (filePath != aFilePath){
         filePath = aFilePath;
         if (filePath){
-             self.image = [[NSWorkspace sharedWorkspace] iconForFile:filePath];   
+             self.image = [[NSWorkspace sharedWorkspace] iconForFile:filePath];
+            
+            self.menu = [self contextualMenu];
+            
         }
     }
+}
+
+- (IBAction)showInFinder:(NSMenuItem *)sender {
+    
+    NSString *filePath = [sender representedObject];
+    
+    NSArray * urls = @[[NSURL fileURLWithPath:filePath]];
+    
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:urls];
+    
+}
+
+- (NSMenu *)contextualMenu {
+    
+    
+    if (self.filePath != nil) {
+
+        NSMenu * menu = [NSMenu new];
+        NSMenuItem * menuItem = [[NSMenuItem alloc] initWithTitle:@"Show in Finder" action:@selector(showInFinder:) keyEquivalent:@""];
+        menuItem.representedObject = self.filePath;
+        [menu addItem:menuItem];
+        return menu;
+    }
+    
+    return nil;
+    
 }
 
 
