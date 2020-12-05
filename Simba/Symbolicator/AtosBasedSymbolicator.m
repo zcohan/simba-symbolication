@@ -10,6 +10,10 @@
 
 @implementation ExecutableInfo
 
+- (NSString *)executableName {
+    return self.executableURL.lastPathComponent;
+}
+
 @end
 
 @implementation AtosBasedSymbolicator
@@ -188,7 +192,7 @@
         
         [crashReportContents enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
             
-            if ([line containsString:executableInfo.loadAddress]) {
+            if ([line containsString:executableInfo.loadAddress] || [line containsString:executableInfo.executableName]) {
                                 
                 [outputLines addObject:[self symbolicatedLineForUnsymbolicatedLine:line info:executableInfo]];
                 

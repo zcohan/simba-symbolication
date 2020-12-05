@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSString * _Nonnull architecture;
 @property (strong, nonatomic) NSString * _Nonnull loadAddress;
 
+@property (readonly, nonatomic) NSString * _Nonnull executableName;
+
 @end
 
 NS_ASSUME_NONNULL_BEGIN
