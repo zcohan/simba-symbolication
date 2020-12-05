@@ -32,8 +32,8 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-        
-    textView.string = crashReport;
+            
+    self.textView.string = crashReport;
     self.window.title = fileName;
     
     NSString *stringToHoneInOn = @"Crashed::";
@@ -53,7 +53,7 @@
     }
 }
 
-- (IBAction)saveToFile:(id)sender {
+- (IBAction)saveAsFile:(id)sender {
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
         

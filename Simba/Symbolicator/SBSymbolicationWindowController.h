@@ -13,8 +13,9 @@
 @property (strong, nonatomic) NSString *fileName;
 @property (strong, nonatomic) NSString *crashReport;
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
+@property (weak) IBOutlet NSButton *saveToFileButton;
 
 
-- (IBAction)saveToFile:(id)sender;
+- (IBAction)saveAsFile:(id)sender;
 
 @end

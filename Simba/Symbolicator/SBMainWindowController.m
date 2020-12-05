@@ -10,6 +10,12 @@
 #import "SBSymbolicationWindowController.h"
 #import "AtosBasedSymbolicator.h"
 
+@interface SBMainWindowController ()
+
+@property (strong, nonatomic) NSWindowController *visibleSymbolicationController;
+
+@end
+
 @implementation SBMainWindowController
 @synthesize dSYMImageWell;
 @synthesize crashFileImageWell;
@@ -111,6 +117,7 @@
 #pragma mark Symbolication
 
 
+
 - (IBAction)symbolicate:(id)sender {
     
     if (!self.crashFilePath || !self.dSYMPath || !self.executablePath){
@@ -146,6 +153,7 @@
             symbolicatorWindowController.fileName = (self.crashFilePath).lastPathComponent;
             [symbolicatorWindowController showWindow:nil];
 
+            self.visibleSymbolicationController = symbolicatorWindowController;
             
         });
 
