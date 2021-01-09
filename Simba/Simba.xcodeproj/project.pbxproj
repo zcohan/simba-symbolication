@@ -377,7 +377,7 @@
 				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
 				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 0.3.4;
+				MARKETING_VERSION = 0.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.basilapps.Simba;
 				PRODUCT_NAME = Simba;
 				WRAPPER_EXTENSION = app;
@@ -394,7 +394,7 @@
 				GCC_PREFIX_HEADER = "Symbolicator/Simba-Prefix.pch";
 				INFOPLIST_FILE = "Symbolicator/Simba-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 0.3.4;
+				MARKETING_VERSION = 0.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.basilapps.Simba;
 				PRODUCT_NAME = Simba;
 				WRAPPER_EXTENSION = app;
